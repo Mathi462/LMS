@@ -1,0 +1,175 @@
+<div class="d-flex flex-column h-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+
+    <!-- Toggle sidebar -->
+    <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+      <span class="material-icons">menu</span>
+    </button>
+
+    <!-- Brand -->
+    <a href="fixed-student-dashboard.html" class="navbar-brand"><i class="material-icons">school</i> LearnPlus</a>
+
+    <!-- Search -->
+    <form class="navbar-search-form d-none d-md-flex">
+      <input type="text" class="form-control" placeholder="Search">
+      <button class="btn" type="button"><i class="material-icons">search</i></button>
+    </form>
+    <!-- // END Search -->
+
+    <div class="navbar-spacer"></div>
+
+    <!-- Menu -->
+    <ul class="nav navbar-nav d-none d-md-flex">
+      <li class="nav-item">
+        <a class="nav-link" href="fixed-student-forum.html">Forum</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="fixed-student-help-center.html">Get Help</a>
+      </li>
+    </ul>
+
+    <!-- Menu -->
+    <ul class="nav navbar-nav">
+
+      <li class="nav-item">
+        <a href="fixed-student-cart.html" class="nav-link">
+          <i class="material-icons">shopping_cart</i>
+        </a>
+      </li>
+
+      <!-- User dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img src="assets/images/people/50/guy-6.jpg"
+            alt="Avatar" class="rounded-circle" width="40"></a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="fixed-student-account-edit.html">
+            <i class="material-icons">edit</i> Edit Account
+          </a>
+          <a class="dropdown-item" href="fixed-student-profile.html">
+            <i class="material-icons">person</i> Public Profile
+          </a>
+          <a class="dropdown-item" href="guest-login.html">
+            <i class="material-icons">lock</i> Logout
+          </a>
+        </div>
+      </li>
+      <!-- // END User dropdown -->
+
+    </ul>
+    <!-- // END Menu -->
+
+  </nav>
+  <!-- // END Navbar -->
+
+  <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
+    <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+      <div class="container-fluid">
+
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="fixed-student-dashboard.html">Home</a></li>
+          <li class="breadcrumb-item active">Quiz</li>
+        </ol>
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body text-center">
+              <h4 class="mb-0"><strong>{{qLength}}</strong></h4>
+              <small class="text-muted-light">TOTAL</small>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <h4 class="text-success mb-0"><strong>2</strong></h4>
+              <small class="text-muted-light">CORECT</small>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <h4 class="text-danger mb-0"><strong>5</strong></h4>
+              <small class="text-muted-light">WRONG</small>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <h4 class="text-primary mb-0"><strong>17</strong></h4>
+              <small class="text-muted-light">LEFT</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header bg-white">
+            <div class="media align-items-center">
+              <div class="media-left">
+                <h4 class="mb-0"><strong>#</strong></h4>
+              </div>
+              <div class="media-body">
+                <h4 class="card-title">
+                  {{getSingleQues(index).Question}}
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input">
+                <!-- <span class="custom-control-indicator"></span> -->
+                <!-- <span class="custom-control-description">{{rest[0].Option1}}</span> -->
+                <mat-checkbox [checked]="!chk1" (change)="getChange1($event)" value={{getSingleQues(index).Option1}}>{{getSingleQues(index).Option1}}</mat-checkbox>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input">
+                <!-- <span class="custom-control-indicator"></span> -->
+                <!-- <span class="custom-control-description">{{rest[0].Option2}}</span> -->
+                <mat-checkbox [checked]="!chk2" (change)="getChange2($event)" value={{getSingleQues(index).Option2}}>{{getSingleQues(index).Option2}}</mat-checkbox>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input">
+                <!-- <span class="custom-control-indicator"></span> -->
+                <!-- <span class="custom-control-description">{{rest[0].Option3}}</span> -->
+                <mat-checkbox [checked]="!chk3" (change)="getChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-checkbox>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input">
+                <!-- <span class="custom-control-indicator"></span> -->
+                <!-- <span class="custom-control-description">{{rest[0].Option4}}</span> -->
+                <mat-checkbox [checked]="!chk4" (change)="getChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-checkbox>
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="custom-control custom-checkbox mb-0">
+                <input type="checkbox" class="custom-control-input">
+                <!-- <span class="custom-control-indicator"></span> -->
+                <!-- <span class="custom-control-description">{{rest[0].Option5}}</span> -->
+                <!-- <mat-checkbox  (change)="answercheck($event,value)" value="{{rest[0].Option5}}">{{rest[0].Option5}}</mat-checkbox> -->
+                <mat-checkbox [checked]="!chk5" (change)="getChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-checkbox>
+              </label>
+            </div>
+<!--
+            <div *ngFor="let option of options ; let final of finalchk">
+              <mat-checkbox   [checked]="!final"  id={{options.indexOf(option)}} (change)="getChange($event)">{{option}}
+              </mat-checkbox>
+            </div>-->
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-white">Skip</a>
+            <a href="#" class="btn btn-success float-right" [ngClass]="{disabled : !submit}" (click)="buttonClicked()">Next
+              <i class="material-icons btn__icon--right">send</i></a>
+
+          </div>
+          <!-- <button  [ngClass]="{disabled : submit}" (click)="buttonClicked()">
+              OK
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
