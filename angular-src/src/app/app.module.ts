@@ -6,7 +6,7 @@ import { TestComponent } from './test/test.component';
 import { ApiService } from './api.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule} from '@angular/material';
 
 
 @NgModule({
@@ -17,8 +17,8 @@ import {MatButtonModule, MatCheckboxModule, MatCardModule} from '@angular/materi
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
-    MatButtonModule, MatCheckboxModule, MatCardModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatCardModule],
+    MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatCardModule, MatRadioModule],
   providers: [
     ApiService
   ],

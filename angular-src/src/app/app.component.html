@@ -1,3 +1,5 @@
+
+
 <div class="d-flex flex-column h-100">
   <!-- Navbar -->
   <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
@@ -11,7 +13,7 @@
     <a href="fixed-student-dashboard.html" class="navbar-brand"><i class="material-icons">school</i> LearnPlus</a>
 
     <!-- Search -->
-    <form class="navbar-search-form d-none d-md-flex">
+    <form class="navbar-search-form d-none d-md-flex" >
       <input type="text" class="form-control" placeholder="Search">
       <button class="btn" type="button"><i class="material-icons">search</i></button>
     </form>
@@ -79,25 +81,25 @@
           </div>
           <div class="card">
             <div class="card-body text-center">
-              <h4 class="text-success mb-0"><strong>2</strong></h4>
+              <h4 class="text-success mb-0"><strong>{{correct_ans}}</strong></h4>
               <small class="text-muted-light">CORECT</small>
             </div>
           </div>
           <div class="card">
             <div class="card-body text-center">
-              <h4 class="text-danger mb-0"><strong>5</strong></h4>
+              <h4 class="text-danger mb-0"><strong>{{wrong_ans}}</strong></h4>
               <small class="text-muted-light">WRONG</small>
             </div>
           </div>
           <div class="card">
             <div class="card-body text-center">
-              <h4 class="text-primary mb-0"><strong>17</strong></h4>
+              <h4 class="text-primary mb-0"><strong>{{left}}</strong></h4>
               <small class="text-muted-light">LEFT</small>
             </div>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" >
           <div class="card-header bg-white">
             <div class="media align-items-center">
               <div class="media-left">
@@ -106,12 +108,18 @@
               <div class="media-body">
                 <h4 class="card-title">
                   {{getSingleQues(index).Question}}
+
                 </h4>
               </div>
             </div>
           </div>
-          <div class="card-body">
+
+
+          <div>
+          <div class="card-body" [hidden]="!checkAnsCount()">
+
             <div class="form-group">
+
               <label class="custom-control custom-checkbox mb-0">
                 <input type="checkbox" class="custom-control-input">
                 <!-- <span class="custom-control-indicator"></span> -->
@@ -119,7 +127,9 @@
                 <mat-checkbox [checked]="!chk1" (change)="getChange1($event)" value={{getSingleQues(index).Option1}}>{{getSingleQues(index).Option1}}</mat-checkbox>
               </label>
             </div>
-            <div class="form-group">
+
+
+            <div class="form-group" >
               <label class="custom-control custom-checkbox mb-0">
                 <input type="checkbox" class="custom-control-input">
                 <!-- <span class="custom-control-indicator"></span> -->
@@ -127,7 +137,7 @@
                 <mat-checkbox [checked]="!chk2" (change)="getChange2($event)" value={{getSingleQues(index).Option2}}>{{getSingleQues(index).Option2}}</mat-checkbox>
               </label>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
               <label class="custom-control custom-checkbox mb-0">
                 <input type="checkbox" class="custom-control-input">
                 <!-- <span class="custom-control-indicator"></span> -->
@@ -151,8 +161,66 @@
                 <!-- <mat-checkbox  (change)="answercheck($event,value)" value="{{rest[0].Option5}}">{{rest[0].Option5}}</mat-checkbox> -->
                 <mat-checkbox [checked]="!chk5" (change)="getChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-checkbox>
               </label>
-            </div>
-<!--
+            </div></div>
+            <div class="card-body" [hidden]="checkAnsCount()">
+                <div class="form-group">
+
+                   <label class="custom-control custom-checkbox mb-0">
+                    <!-- <input type="checkbox" class="custom-control-input"> -->
+                    <!-- <span class="custom-control-indicator"></span> -->
+                    <!-- <span class="custom-control-description">{{rest[0].Option1}}</span> -->
+                    <mat-radio-group>
+                    <mat-radio-button [checked]="!chk1" (click)="getRadChange1($event)" value={{getSingleQues(index).Option1}}  >{{getSingleQues(index).Option1}}</mat-radio-button>
+                  </mat-radio-group></label>
+                </div>
+
+                <div class="form-group">
+                   <label class="custom-control custom-checkbox mb-0">
+                   <!-- <input type="checkbox" class="custom-control-input"> -->
+                    <!-- <span class="custom-control-indicator"></span> -->
+                    <!-- <span class="custom-control-description">{{rest[0].Option2}}</span> -->
+                    <mat-radio-group>
+                        <mat-radio-button [checked]="!chk2" (change)="getRadChange2($event)" value={{getSingleQues(index).Option2}} >{{getSingleQues(index).Option2}}</mat-radio-button>
+                      </mat-radio-group>
+                   </label>
+                </div>
+                <div class="form-group">
+                   <label class="custom-control custom-checkbox mb-0">
+                   <!--  <input type="checkbox" class="custom-control-input">
+                     <span class="custom-control-indicator"></span> -->
+                    <!-- <span class="custom-control-description">{{rest[0].Option3}}</span> -->
+                    <mat-radio-group>
+                        <mat-radio-button [checked]="!chk3" (change)="getRadChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-radio-button>
+                      </mat-radio-group>
+                 </label>
+                </div>
+                <div class="form-group">
+                   <label class="custom-control custom-checkbox mb-0">
+                  <!--  <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span> -->
+                    <!-- <span class="custom-control-description">{{rest[0].Option4}}</span> -->
+                    <mat-radio-group>
+                        <mat-radio-button [checked]="!chk4" (change)="getRadChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-radio-button>
+                      </mat-radio-group>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label class="custom-control custom-checkbox mb-0">
+                    <input type="checkbox" class="custom-control-input">
+                    <!-- <span class="custom-control-indicator"></span> -->
+                    <!-- <span class="custom-control-description">{{rest[0].Option5}}</span> -->
+                    <!-- <mat-checkbox  (change)="answercheck($event,value)" value="{{rest[0].Option5}}">{{rest[0].Option5}}</mat-checkbox> -->
+                    <mat-radio-group>
+                        <mat-radio-button [checked]="!chk5" (change)="getRadChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-radio-button>
+                      </mat-radio-group>
+                  </label>
+                </div>
+                <mat-radio-group multiple="false">
+                    <mat-radio-button off >{{getSingleQues(index).Option2}}</mat-radio-button>
+                    <mat-radio-button>{{getSingleQues(index).Option2}}</mat-radio-button>
+                    <mat-radio-button>{{getSingleQues(index).Option2}}</mat-radio-button>
+                  </mat-radio-group>
+            <!--
             <div *ngFor="let option of options ; let final of finalchk">
               <mat-checkbox   [checked]="!final"  id={{options.indexOf(option)}} (change)="getChange($event)">{{option}}
               </mat-checkbox>
@@ -160,8 +228,9 @@
           </div>
           <div class="card-footer">
             <a href="#" class="btn btn-white">Skip</a>
-            <a href="#" class="btn btn-success float-right" [ngClass]="{disabled : !submit}" (click)="buttonClicked()">Next
-              <i class="material-icons btn__icon--right">send</i></a>
+            <a href="#" class="btn btn-success float" [ngClass]="{disabled : submit}" (click)="buttonClicked()">Submit<i class="material-icons btn__icon--right">send</i></a>
+            <a href="#" class="btn btn-success float-right" [ngClass]="{disabled : !submit}" (click)="buttonClicked()">Next<i class="material-icons btn__icon--right">send</i></a>
+
 
           </div>
           <!-- <button  [ngClass]="{disabled : submit}" (click)="buttonClicked()">
