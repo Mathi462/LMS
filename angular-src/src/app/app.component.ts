@@ -6,6 +6,8 @@ import { SELECT_PANEL_MAX_HEIGHT } from '@angular/material';
 import { elementStyleProp } from '@angular/core/src/render3/instructions';
 import { createElementCssSelector } from '@angular/compiler';
 
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { createElementCssSelector } from '@angular/compiler';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'angular-src';
   rest: any;
   index: number;
@@ -35,10 +38,23 @@ export class AppComponent {
   indexv: any;
   evesvalue: string[] = [];
   evi = 0;
-
+  submitevn: boolean;
+  counter: any;
+  interval: any;
+  eventDate: any;
+  eventTime: any;
+  curDate: any;
+  curTime: any;
+  curDay: any;
+  remTime: any;
+  s: any;
+  m: any;
+  h: any;
+  d: any;
   constructor(public apiService: ApiService) {
     this.getNotes();
     this.submit = true;
+    this.submitevn = false;
     // tslint:disable-next-line:no-unused-expression
     this.checkBoxValue = true;
 
@@ -50,6 +66,7 @@ export class AppComponent {
 
     this.options = ['1', '2', '3', 'h', ' k' ];
     console.log(this.checkBoxValue);
+    this.startCountdown(10);
       }
 
   getNotes() {
@@ -80,13 +97,16 @@ export class AppComponent {
     console.log('index : ' + this.index);
     if (this.index < (this.rest).length - 1) {
       this.index++;
-      console.log('After increment index : ' + this.index);
+      console.log('After increment  index : ' + this.index);
      } else {
        this.submit = false;
      }
      this.elmSelinbutton(this.index);
      this.evi = 0;
      this.left-- ;
+  }
+  SubmitButtonClicked() {
+
   }
   answercheck(event, value) {
     console.log(value);
@@ -236,13 +256,76 @@ export class AppComponent {
 
     }
     checkAnsCount() {
-      console.log('number of ans in checkAnsCount:' + this.numans);
+     // console.log('number of ans in checkAnsCount:' + this.numans);
       if (this.numans === 2 ) {
             return true;
       } else if (this.numans === 1) {
         return false;
       }
 
+      }
+      Submitfunction() {
+          console.log('subvar : ' + this.submitevn);
+          if (!this.submitevn) {
+            this.submitevn = true;
+
+           } else {
+            this.submitevn = false;
+
+          }
+
+      }
+      divHide() {
+        return this.submitevn;
+      }
+       startCountdown(seconds) {
+      this.counter = seconds;
+     /*  this.eventDate = new Date(2018, 11, 25);
+        this.eventTime = this.eventDate.getTime();
+        console.log('this.eventTime : ' + this.eventTime);
+        this.curDate = new Date();
+          this.curDay = this.curDate.getUTCDate();
+          console.log('this.curDay : ' + this.curDay);
+          this.curTime = this.curDate.getTime();
+          console.log('this.curTime :' + this.curTime);
+          this.remTime = this.curTime - this.eventTime ;
+          console.log('this.remTime :' + this.remTime);
+          this.s = Math.floor(this.remTime / 1000);
+          console.log('this.seconds : ' + this.s);
+          this.m = Math.floor(this.s / 60);
+           console.log('this.minuts : ' +  this.m );
+           this.h = Math.floor(this.m / 60);
+           console.log('this.hours : ' +  this.h);
+           this.d = Math.floor(this.h / 24);
+
+           this.h *= 24;
+           this.m *= 60;
+           this.s *= 60;
+           this.h = (this.h < 10) ? '0' + this.h : this.h;
+           this.m = (this.m < 10) ? '0' + this.m : this.m;
+           this.s = (this.s < 10) ? '0' + this.s : this.s;
+           console.log('this.d : ' +  this.d);
+
+           console.log('this.seconds : ' + this.s);
+
+            console.log('this.minuts : ' +  this.m );
+
+            console.log('this.hours : ' +  this.h);
+ */
+       this.interval = setInterval(() => {
+          console.log(this.counter);
+          this.counter--;
+
+
+          if (this.counter <= 0 ) {
+
+            // The code here will run when
+            // the timer has reached zero.
+
+            clearInterval(this.interval);
+           // console.log('Ding!');
+          }
+        }, 1000);
       }
 
   }

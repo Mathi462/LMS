@@ -64,14 +64,16 @@
   </nav>
   <!-- // END Navbar -->
 
-  <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
+  <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region >
     <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
       <div class="container-fluid">
 
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="fixed-student-dashboard.html">Home</a></li>
           <li class="breadcrumb-item active">Quiz</li>
-        </ol>
+          <li class="breadcrumb-item active">Time : {{counter}}</li>
+          </ol>
+          <div> </div>
         <div class="card-group">
           <div class="card">
             <div class="card-body text-center">
@@ -98,8 +100,13 @@
             </div>
           </div>
         </div>
+        <div  [hidden]="!divHide()">
 
-        <div class="card" >
+          <h2>Your test is Over...........
+            </h2>
+          </div>
+        <div class="card" [hidden]="divHide()">
+
           <div class="card-header bg-white">
             <div class="media align-items-center">
               <div class="media-left">
@@ -164,21 +171,43 @@
             </div></div>
             <div class="card-body" [hidden]="checkAnsCount()">
                 <div class="form-group">
-
-                   <label class="custom-control custom-checkbox mb-0">
-                    <!-- <input type="checkbox" class="custom-control-input"> -->
+                     <input type="checkbox" class="custom-control-input">
                     <!-- <span class="custom-control-indicator"></span> -->
                     <!-- <span class="custom-control-description">{{rest[0].Option1}}</span> -->
                     <mat-radio-group>
-                    <mat-radio-button [checked]="!chk1" (click)="getRadChange1($event)" value={{getSingleQues(index).Option1}}  >{{getSingleQues(index).Option1}}</mat-radio-button>
-                  </mat-radio-group></label>
+                       <div class="form-group">
+                         <label class="custom-control custom-checkbox mb-0">
+                            <mat-radio-button [checked]="!chk1" (click)="getRadChange1($event)" value={{getSingleQues(index).Option1}}  >{{getSingleQues(index).Option1}}</mat-radio-button><br>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label class="custom-control custom-checkbox mb-0">
+                              <mat-radio-button [checked]="!chk2" (change)="getRadChange2($event)" value={{getSingleQues(index).Option2}} >{{getSingleQues(index).Option2}}</mat-radio-button>
+                          </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox mb-0">
+                                <mat-radio-button [checked]="!chk3" (change)="getRadChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-radio-button>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                              <label class="custom-control custom-checkbox mb-0">
+                                  <mat-radio-button [checked]="!chk4" (change)="getRadChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-radio-button>
+                              </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="custom-control custom-checkbox mb-0">
+                                    <mat-radio-button [checked]="!chk5" (change)="getRadChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-radio-button>
+                                </label>
+                              </div>
+              </mat-radio-group>
                 </div>
-
+<!--
                 <div class="form-group">
                    <label class="custom-control custom-checkbox mb-0">
-                   <!-- <input type="checkbox" class="custom-control-input"> -->
-                    <!-- <span class="custom-control-indicator"></span> -->
-                    <!-- <span class="custom-control-description">{{rest[0].Option2}}</span> -->
+                   <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{rest[0].Option2}}</span>
                     <mat-radio-group>
                         <mat-radio-button [checked]="!chk2" (change)="getRadChange2($event)" value={{getSingleQues(index).Option2}} >{{getSingleQues(index).Option2}}</mat-radio-button>
                       </mat-radio-group>
@@ -186,9 +215,9 @@
                 </div>
                 <div class="form-group">
                    <label class="custom-control custom-checkbox mb-0">
-                   <!--  <input type="checkbox" class="custom-control-input">
-                     <span class="custom-control-indicator"></span> -->
-                    <!-- <span class="custom-control-description">{{rest[0].Option3}}</span> -->
+                    <input type="checkbox" class="custom-control-input">
+                     <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{rest[0].Option3}}</span>
                     <mat-radio-group>
                         <mat-radio-button [checked]="!chk3" (change)="getRadChange3($event)" value={{getSingleQues(index).Option3}}>{{getSingleQues(index).Option3}}</mat-radio-button>
                       </mat-radio-group>
@@ -196,9 +225,9 @@
                 </div>
                 <div class="form-group">
                    <label class="custom-control custom-checkbox mb-0">
-                  <!--  <input type="checkbox" class="custom-control-input">
-                    <span class="custom-control-indicator"></span> -->
-                    <!-- <span class="custom-control-description">{{rest[0].Option4}}</span> -->
+                   <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{rest[0].Option4}}</span>
                     <mat-radio-group>
                         <mat-radio-button [checked]="!chk4" (change)="getRadChange4($event)" value={{getSingleQues(index).Option4}}>{{getSingleQues(index).Option4}}</mat-radio-button>
                       </mat-radio-group>
@@ -207,19 +236,15 @@
                 <div class="form-group">
                   <label class="custom-control custom-checkbox mb-0">
                     <input type="checkbox" class="custom-control-input">
-                    <!-- <span class="custom-control-indicator"></span> -->
-                    <!-- <span class="custom-control-description">{{rest[0].Option5}}</span> -->
-                    <!-- <mat-checkbox  (change)="answercheck($event,value)" value="{{rest[0].Option5}}">{{rest[0].Option5}}</mat-checkbox> -->
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{rest[0].Option5}}</span>
+                    <mat-checkbox  (change)="answercheck($event,value)" value="{{rest[0].Option5}}">{{rest[0].Option5}}</mat-checkbox>
                     <mat-radio-group>
                         <mat-radio-button [checked]="!chk5" (change)="getRadChange5($event)" value={{getSingleQues(index).Option5}}>{{getSingleQues(index).Option5}}</mat-radio-button>
                       </mat-radio-group>
                   </label>
-                </div>
-                <mat-radio-group multiple="false">
-                    <mat-radio-button off >{{getSingleQues(index).Option2}}</mat-radio-button>
-                    <mat-radio-button>{{getSingleQues(index).Option2}}</mat-radio-button>
-                    <mat-radio-button>{{getSingleQues(index).Option2}}</mat-radio-button>
-                  </mat-radio-group>
+                </div> -->
+
             <!--
             <div *ngFor="let option of options ; let final of finalchk">
               <mat-checkbox   [checked]="!final"  id={{options.indexOf(option)}} (change)="getChange($event)">{{option}}
@@ -227,13 +252,11 @@
             </div>-->
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-white">Skip</a>
-            <a href="#" class="btn btn-success float" [ngClass]="{disabled : submit}" (click)="buttonClicked()">Submit<i class="material-icons btn__icon--right">send</i></a>
+            <!-- <a href="#" class="btn btn-white">Skip</a> -->
+            <a href="#" class="btn btn-success float" [ngClass]="{disabled : submit}"  (click)="Submitfunction()">Submit<i class="material-icons btn__icon--right">send</i></a>
             <a href="#" class="btn btn-success float-right" [ngClass]="{disabled : !submit}" (click)="buttonClicked()">Next<i class="material-icons btn__icon--right">send</i></a>
 
-
-          </div>
-          <!-- <button  [ngClass]="{disabled : submit}" (click)="buttonClicked()">
+          <!-- <button  [ngClass]="{disabled : submit}" (click)="SubmitButtonClicked()">
               OK
           </button> -->
         </div>
